@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by QtCreator 4.10.1, 2019-11-28T12:43:17. -->
+<!-- Written by QtCreator 4.10.1, 2019-11-28T13:29:16. -->
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
@@ -314,6 +314,7 @@
     <value type="bool" key="RunConfiguration.UseMultiProcess">false</value>
     <value type="bool" key="RunConfiguration.UseQmlDebugger">false</value>
     <value type="bool" key="RunConfiguration.UseQmlDebuggerAuto">true</value>
+    <value type="bool" key="RunConfiguration.UseTerminal">false</value>
     <value type="QString" key="RunConfiguration.WorkingDirectory">/home/vidar/Documents/FYS3150/Project5/FinancialEngineering/main</value>
     <value type="QString" key="RunConfiguration.WorkingDirectory.default">/home/vidar/Documents/FYS3150/Project5/build-FinancialEngineering-Desktop_Qt_5_13_1_GCC_64bit-Debug/main</value>
    </valuemap>

@@ -6,18 +6,16 @@
 using namespace std;
 using namespace arma;
 
-void Transaction(int MC, int Antall_a, vec tran, int loop, ofstream& file){
-    int seed = time(0);
+void Transaction(int MC, int Antall_a, vec tran, int loop, ofstream& file, int myrank){
+    int seed = time(0)+myrank;
+    cout << "SEEEEEEEEEEEEED = " << seed << " " << myrank << endl;
     mt19937_64 engine(seed);
-
-    file << Antall_a << endl;
 
     uniform_real_distribution<double> eps_d(0, 1);
 
     int x,y;
     double eps;
     double x_new, y_new;
-
     for(int C = 0; C < MC; C++){
         for(int i = 0; i < loop; i++){
             x = rand() % Antall_a;
@@ -37,9 +35,9 @@ void Transaction(int MC, int Antall_a, vec tran, int loop, ofstream& file){
 
         }
 
-        for(int j = 0; j < Antall_a; j++){
+        for(int j = 0; j < 10; j++){
             file << tran(j) << endl;
+            cout << tran(j) << "   " << myrank << endl;
         }
     }
-
 }

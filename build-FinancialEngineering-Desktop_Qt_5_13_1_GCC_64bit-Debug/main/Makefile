@@ -12,11 +12,11 @@ EQ            = =
 
 ####### Compiler, tools and options
 
-CC            = gcc
-CXX           = g++
+CC            = mpicc
+CXX           = mpicxx
 DEFINES       = -DQT_QML_DEBUG
 CFLAGS        = -pipe -g -Wall -W -fPIC $(DEFINES)
-CXXFLAGS      = -pipe -g -std=gnu++11 -Wall -W -fPIC $(DEFINES)
+CXXFLAGS      = -pipe -DMPICH_IGNORE_CXX_SEEK -g -std=gnu++11 -Wall -W -fPIC $(DEFINES)
 INCPATH       = -I../../FinancialEngineering/main -I. -I/home/vidar/Qt/5.13.1/gcc_64/mkspecs/linux-g++
 QMAKE         = /home/vidar/Qt/5.13.1/gcc_64/bin/qmake
 DEL_FILE      = rm -f
@@ -38,9 +38,9 @@ TAR           = tar -cf
 COMPRESS      = gzip -9f
 DISTNAME      = main1.0.0
 DISTDIR = /home/vidar/Documents/FYS3150/Project5/build-FinancialEngineering-Desktop_Qt_5_13_1_GCC_64bit-Debug/main/.tmp/main1.0.0
-LINK          = g++
+LINK          = mpicxx
 LFLAGS        = 
-LIBS          = $(SUBLIBS)    
+LIBS          = $(SUBLIBS) -llapack -lblas -larmadillo   
 AR            = ar cqs
 RANLIB        = 
 SED           = sed

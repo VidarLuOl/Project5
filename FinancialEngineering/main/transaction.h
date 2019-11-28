@@ -8,6 +8,6 @@ using namespace arma;
 using namespace std;
 
 
-void Transaction(int MC, int Antall_a, vec tran, int loop, ofstream& file);
+void Transaction(int MC, int Antall_a, vec tran, int loop, ofstream& file, int myrank);
 
 #endif
