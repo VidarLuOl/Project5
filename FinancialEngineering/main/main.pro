@@ -4,4 +4,11 @@ CONFIG -= app_bundle
 CONFIG -= qt
 
 SOURCES += \
-        main.cpp
+        main.cpp \
+        transaction.cpp
+
+HEADERS += \
+        transaction.h
+
+DISTFILES += \
+    plot.py
