@@ -1,19 +1,31 @@
 import matplotlib.pyplot as plt
 import numpy as np
-from math import log
+from math import log, exp
 
 with open("Lommepenger.txt") as file:
 
     Opg = "a"
 
+    b = 1/500
+    eq = b*exp(-b*500)
+
+    print(eq)
+
     if(Opg == "a"):
         lista = []
 
+        """
         for i in file:
-            lista.append((float(i)))
+            lista.append(b*exp(-b*float(i)))
+        """
+
+        for i in file:
+            lista.append(float(i))
 
         max_v = max(lista)
         min_v = min(lista)
+
+        """lista.sort()"""
 
         max_min = int((max_v-min_v)*0.05)
 
@@ -41,3 +53,6 @@ with open("Lommepenger.txt") as file:
 
         plt.show()
 
+        plt.plot(ting)
+
+        plt.show()
