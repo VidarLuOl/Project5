@@ -56,7 +56,8 @@ SOURCES       = ../../FinancialEngineering/main/main.cpp \
 		../../FinancialEngineering/main/transaction.cpp 
 OBJECTS       = main.o \
 		transaction.o
-DIST          = ../../FinancialEngineering/main/plot.py \
+DIST          = ../../FinancialEngineering/main/calculated/plota.py \
+		../../FinancialEngineering/main/plot.py \
 		/home/vidar/Qt/5.13.1/gcc_64/mkspecs/features/spec_pre.prf \
 		/home/vidar/Qt/5.13.1/gcc_64/mkspecs/common/unix.conf \
 		/home/vidar/Qt/5.13.1/gcc_64/mkspecs/common/linux.conf \

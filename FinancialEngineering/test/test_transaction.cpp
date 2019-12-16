@@ -17,10 +17,7 @@ TEST_CASE("Test Transaction"){
 
     for(int i = 0; i < Antall_a; i++){
         ting[i] = m0;
-        cout << ting[i] << endl;
     }
-
-    cout << "_____________________" << endl;
 
     int seed = time(0);
     mt19937_64 engine(seed);
@@ -43,13 +40,11 @@ TEST_CASE("Test Transaction"){
             ting[x] = new_x;
             ting[y] = new_y;
         }
-        cout << x << endl;
     }
 
     double sum = 0;
     for(int i = 0; i < Antall_a; i++){
         sum += ting[i];
-        cout << ting[i] << endl;
     }
 
 

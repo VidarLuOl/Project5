@@ -21,10 +21,7 @@ void Transaction(int MC, int Antall_a, float su, int loop, ofstream& file, int m
 
     int x,y;
     double eps, sm;
-    double x_new, y_new;
-
-    float summ[Antall_a*4];
-
+    double x_new, y_new, co;
 
     for(int C = 0; C < MC; C++){
         for(int i = 0; i < loop; i++){
@@ -35,35 +32,38 @@ void Transaction(int MC, int Antall_a, float su, int loop, ofstream& file, int m
                 x = rand() % Antall_a;
             }
 
-            eps = eps_d(engine);
 
-            sm = (1-lambda)*(eps*ting[y] - (1-eps)*ting[x]);
+            co = pow(fabs(ting[x]-ting[y]),-2);
 
-            /*Uten lambda
-            x_new = eps*(ting[x] + ting[y]);
-            y_new = (1-eps)*(ting[x] + ting[y]);
+            /*
+            if(co > eps_d(engine)){
+                eps = eps_d(engine);
+
+                x_new = eps*(ting[x] + ting[y]);
+                y_new = (1-eps)*(ting[x] + ting[y]);
+
+                ting[x] = x_new;
+                ting[y] = y_new;
+            }
             */
 
-            x_new = ting[x] + sm;
-            y_new = ting[y] - sm;
 
-            ting[x] = x_new;
-            ting[y] = y_new;
-        }
 
-        /*
-        //MPI_Reduce(&ting, &summ, Antall_a, MPI_FLOAT, MPI_SUM, 0, MPI_COMM_WORLD);
-        MPI_Gather(&ting, Antall_a, MPI_FLOAT, &summ, Antall_a, MPI_FLOAT, 0, MPI_COMM_WORLD);
+            if(co > eps_d(engine)){
+                eps = eps_d(engine);
 
-        if(myrank == 0){
-            for(int i = 0; i < Antall_a*4; i++){
-                file << summ[i] << endl;
+                sm = (1-lambda)*(eps*ting[y] - (1-eps)*ting[x]);
+
+                x_new = ting[x] + sm;
+                y_new = ting[y] - sm;
+
+                ting[x] = x_new;
+                ting[y] = y_new;
             }
+
+
+
         }
-
-        MPI_Barrier(MPI_COMM_WORLD);
-        */
-
 
         for(int i = 0; i < Antall_a; i++){
             file << ting[i] << endl;

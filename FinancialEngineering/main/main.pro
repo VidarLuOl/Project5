@@ -26,4 +26,5 @@ HEADERS += \
         transaction.h
 
 DISTFILES += \
+        calculated/plota.py \
         plot.py

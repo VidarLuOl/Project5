@@ -2,14 +2,9 @@ import matplotlib.pyplot as plt
 import numpy as np
 from math import log, exp
 
-with open("Lommepenger.txt") as file:
+with open("1000MC_1000A_if.txt") as file:
 
     Opg = "a"
-
-    b = 1/500
-    eq = b*exp(-b*500)
-
-    print(eq)
 
     if(Opg == "a"):
         lista = []
@@ -28,8 +23,12 @@ with open("Lommepenger.txt") as file:
         """lista.sort()"""
 
         max_min = int((max_v-min_v)*0.05)
+        lista.sort()
 
-        plt.hist(lista, max_min)
+        plt.hist(lista, max_min, label="Plots how many agents that has what value")
+        plt.xlabel("An agents value")
+        plt.ylabel("Number of agents")
+        plt.legend()
 
         plt.show()
 
