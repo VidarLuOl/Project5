@@ -36,7 +36,8 @@ with open("Lommepenger.txt") as file:
     plt.plot(diff)
 """
 
-with open("500A_25L_if_2.txt") as file:
+
+with open("E_5L_2_0.txt") as file:
     lista = []
 
     for i in file:
@@ -49,9 +50,11 @@ with open("500A_25L_if_2.txt") as file:
 
     v,u = np.histogram(lista, max_min)
     senter = 0.5*(u[1:] + u[:-1])
-    plt.plot(senter, v, label="Lambda = 0.25")
+    plt.plot(senter, v, label="alpha = 0")
 
-with open("500A_5L_if_2.txt") as file:
+
+
+with open("E_5L_2_1.txt") as file:
     lista = []
 
     for i in file:
@@ -64,9 +67,9 @@ with open("500A_5L_if_2.txt") as file:
 
     v,u = np.histogram(lista, max_min)
     senter = 0.5*(u[1:] + u[:-1])
-    plt.plot(senter, v, label="Lambda = 0.5")
+    plt.plot(senter, v, label="alpha = 1")
 
-with open("500A_9L_if_2.txt") as file:
+with open("E_5L_2_2.txt") as file:
     lista = []
 
     for i in file:
@@ -79,13 +82,43 @@ with open("500A_9L_if_2.txt") as file:
 
     v,u = np.histogram(lista, max_min)
     senter = 0.5*(u[1:] + u[:-1])
-    plt.plot(senter, v, label="Lambda = 0.9")
+    plt.plot(senter, v, label="alpha = 2")
+
+with open("E_5L_2_3.txt") as file:
+    lista = []
+
+    for i in file:
+        lista.append(float(i))
+
+    max_v = max(lista)
+    min_v = min(lista)
+
+    max_min = int((max_v-min_v)*0.05)
+
+    v,u = np.histogram(lista, max_min)
+    senter = 0.5*(u[1:] + u[:-1])
+    plt.plot(senter, v, label="alpha = 3")
+
+with open("E_5L_2_4.txt") as file:
+    lista = []
+
+    for i in file:
+        lista.append(float(i))
+
+    max_v = max(lista)
+    min_v = min(lista)
+
+    max_min = int((max_v-min_v)*0.05)
+
+    v,u = np.histogram(lista, max_min)
+    senter = 0.5*(u[1:] + u[:-1])
+    plt.plot(senter, v, label="alpha = 4")
 
 plt.xlabel("An agents value")
 plt.ylabel("Number of agents")
 plt.legend()
 
-plt.xlim(0,4000)
-plt.ylim(0,3000)
+plt.xlim(40,200)
+plt.ylim(1200,5000)
 
 plt.show()

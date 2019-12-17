@@ -3,6 +3,7 @@
 #include <armadillo>
 #include <fstream>
 #include "mpi/mpi.h"
+#include <armadillo>
 
 using namespace std;
 using namespace arma;
@@ -12,6 +13,7 @@ void Transaction(int MC, int Antall_a, float su, int loop, ofstream& file, int m
     mt19937_64 engine(seed);
 
     float ting[Antall_a];
+    Mat<double> c(Antall_a, Antall_a);
 
     for(int i = 0; i < Antall_a; i++){
         ting[i] = su;
@@ -24,6 +26,7 @@ void Transaction(int MC, int Antall_a, float su, int loop, ofstream& file, int m
     double x_new, y_new, co;
 
     for(int C = 0; C < MC; C++){
+        c.zeros();
         for(int i = 0; i < loop; i++){
             x = rand() % Antall_a;
             y = rand() % Antall_a;
@@ -33,7 +36,7 @@ void Transaction(int MC, int Antall_a, float su, int loop, ofstream& file, int m
             }
 
 
-            co = pow(fabs(ting[x]-ting[y]),-2);
+            co = pow(fabs(ting[x]-ting[y]),-2)*pow(c(x,y)+1, 4);
 
             /*
             if(co > eps_d(engine)){
@@ -48,8 +51,23 @@ void Transaction(int MC, int Antall_a, float su, int loop, ofstream& file, int m
             */
 
 
+            /*
+            if(co > eps_d(engine)){
+                c(x,y) += 1;
+                eps = eps_d(engine);
+
+                sm = (1-lambda)*(eps*ting[y] - (1-eps)*ting[x]);
+
+                x_new = ting[x] + sm;
+                y_new = ting[y] - sm;
+
+                ting[x] = x_new;
+                ting[y] = y_new;
+            }
+            */
 
             if(co > eps_d(engine)){
+                c(x,y) += 1;
                 eps = eps_d(engine);
 
                 sm = (1-lambda)*(eps*ting[y] - (1-eps)*ting[x]);
@@ -63,11 +81,13 @@ void Transaction(int MC, int Antall_a, float su, int loop, ofstream& file, int m
 
 
 
+
         }
 
         for(int i = 0; i < Antall_a; i++){
             file << ting[i] << endl;
         }
+
     }
 }
 
