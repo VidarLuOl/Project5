@@ -12,8 +12,8 @@ using namespace arma;
 int main()
 {
     int m0 = 500; //Start sum, også kaldt m0
-    int Antall_Agenter = 1000; //Antall agenter
-    int MC = 1000; //Antall loops, 1 = (Antall_Agenter) linjer
+    int Antall_Agenter = 10; //Antall agenter
+    int MC = 100; //Antall loops, 1 = (Antall_Agenter) linjer
     int loop = 1e7;
     float lambda = 0.5;
 

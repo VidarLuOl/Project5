@@ -13,7 +13,9 @@ void Transaction(int MC, int Antall_a, float su, int loop, ofstream& file, int m
     mt19937_64 engine(seed);
 
     float ting[Antall_a];
-    Mat<double> c(Antall_a, Antall_a);
+    vec c(Antall_a*Antall_a);
+    vec d(Antall_a*Antall_a);
+
 
     for(int i = 0; i < Antall_a; i++){
         ting[i] = su;
@@ -36,7 +38,17 @@ void Transaction(int MC, int Antall_a, float su, int loop, ofstream& file, int m
             }
 
 
-            co = pow(fabs(ting[x]-ting[y]),-2)*pow(c(x,y)+1, 4);
+            co = pow(fabs(ting[x]-ting[y]),-2)*pow(c(x*Antall_a+y)+1, 4);
+
+            /*
+                eps = eps_d(engine);
+
+                x_new = eps*(ting[x] + ting[y]);
+                y_new = (1-eps)*(ting[x] + ting[y]);
+
+                ting[x] = x_new;
+                ting[y] = y_new;
+            */
 
             /*
             if(co > eps_d(engine)){
@@ -67,7 +79,7 @@ void Transaction(int MC, int Antall_a, float su, int loop, ofstream& file, int m
             */
 
             if(co > eps_d(engine)){
-                c(x,y) += 1;
+                c(x*Antall_a + y) += 1;
                 eps = eps_d(engine);
 
                 sm = (1-lambda)*(eps*ting[y] - (1-eps)*ting[x]);
@@ -79,11 +91,14 @@ void Transaction(int MC, int Antall_a, float su, int loop, ofstream& file, int m
                 ting[y] = y_new;
             }
 
-
-
+            //MPI_Reduce(&c, &d, Antall_a*Antall_a, MPI_INTEGER, MPI_SUM, 0, MPI_COMM_WORLD);
 
         }
-
+        MPI_Reduce(&c, &d, Antall_a*Antall_a-1, MPI_INTEGER, MPI_SUM, 0, MPI_COMM_WORLD);
+        if(myrank==0){
+            cout << "____________________" << endl;
+            cout << d << endl;
+        }
         for(int i = 0; i < Antall_a; i++){
             file << ting[i] << endl;
         }

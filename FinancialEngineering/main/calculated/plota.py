@@ -36,7 +36,7 @@ with open("Lommepenger.txt") as file:
     plt.plot(diff)
 """
 
-
+"""
 with open("E_5L_2_0.txt") as file:
     lista = []
 
@@ -51,10 +51,10 @@ with open("E_5L_2_0.txt") as file:
     v,u = np.histogram(lista, max_min)
     senter = 0.5*(u[1:] + u[:-1])
     plt.plot(senter, v, label="alpha = 0")
+"""
 
 
-
-with open("E_5L_2_1.txt") as file:
+with open("500A_25L_if.txt") as file:
     lista = []
 
     for i in file:
@@ -68,7 +68,7 @@ with open("E_5L_2_1.txt") as file:
     v,u = np.histogram(lista, max_min)
     senter = 0.5*(u[1:] + u[:-1])
     plt.plot(senter, v, label="alpha = 1")
-
+"""
 with open("E_5L_2_2.txt") as file:
     lista = []
 
@@ -113,12 +113,13 @@ with open("E_5L_2_4.txt") as file:
     v,u = np.histogram(lista, max_min)
     senter = 0.5*(u[1:] + u[:-1])
     plt.plot(senter, v, label="alpha = 4")
-
+"""
 plt.xlabel("An agents value")
 plt.ylabel("Number of agents")
 plt.legend()
 
-plt.xlim(40,200)
-plt.ylim(1200,5000)
+plt.xlim(17000,18000)
+
+plt.ylim(-25,25)
 
 plt.show()
