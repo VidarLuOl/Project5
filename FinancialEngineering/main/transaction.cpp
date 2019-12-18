@@ -91,14 +91,10 @@ void Transaction(int MC, int Antall_a, float su, int loop, ofstream& file, int m
                 ting[y] = y_new;
             }
 
-            //MPI_Reduce(&c, &d, Antall_a*Antall_a, MPI_INTEGER, MPI_SUM, 0, MPI_COMM_WORLD);
 
         }
-        MPI_Reduce(&c, &d, Antall_a*Antall_a-1, MPI_INTEGER, MPI_SUM, 0, MPI_COMM_WORLD);
-        if(myrank==0){
-            cout << "____________________" << endl;
-            cout << d << endl;
-        }
+        //MPI_Reduce(&c, &d, Antall_a*Antall_a, MPI_INTEGER, MPI_SUM, 0, MPI_COMM_WORLD);
+
         for(int i = 0; i < Antall_a; i++){
             file << ting[i] << endl;
         }
